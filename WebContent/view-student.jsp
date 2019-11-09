@@ -6,94 +6,75 @@
 
 <html>
 <div id="bg">
-<head>
+	<head>
 <title>View Student</title>
 <link type="text/css" rel="stylesheet" href="css/view-student-style.css" />
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 
-</head>
-
-<body>
-
-
-	<%!int id;%>
-	<%
-	
-		id= Integer.parseInt(request.getParameter("studentId"));
-
+	</head>
+	<body>
+		<%!int id;%>
+		<%
+			id = Integer.parseInt(request.getParameter("studentId"));
 		
-	%>
+		if (session.getAttribute("email1") == null  ) {
+			response.sendRedirect(request.getContextPath() + "/index.jsp");
+		}
+		
+		%>
 
-
-	<div id="wrapper">
-
-		<div id="header">
-			<h2>Student's semestral results</h2>
+		<div id="wrapper">
+			<div id="header">
+			
+				<h2>Student's semestral results</h2>
+			</div>
 		</div>
-	</div>
 
-
-
-
-	<div id="container">
-		<div id="content">
-			<table>
-
-
-				<tr>
-					<th>School year</th>
-					<th>Math</th>
-					<th>Phisics</th>
-					<th>English</th>
-					<th>Biology</th>
-					<th>Art</th>
-					<th>History</th>
-
-
-
-
-
-				</tr>
-
-
-
-				<c:forEach var="tempResults" items="${RESULTS}">
-
-
+		<div id="container">
+			<div id="content">
+				<table>
+				
 					<tr>
-						<td>${tempResults.schoolYear}</td>
-						<td>${tempResults.math}</td>
-						<td>${tempResults.phisics}</td>
-						<td>${tempResults.english}</td>
-						<td>${tempResults.biology}</td>
-						<td>${tempResults.art}</td>
-						<td>${tempResults.history}</td>
-
+						<th>School year</th>
+						<th>Math</th>
+						<th>Phisics</th>
+						<th>English</th>
+						<th>Biology</th>
+						<th>Art</th>
+						<th>History</th>
 					</tr>
 
-				</c:forEach>
+						<!-- Display semester results of the student -->
+					<c:forEach var="tempResults" items="${RESULTS}">
+						<tr>
+							<td>${tempResults.schoolYear}</td>
+							<td>${tempResults.math}</td>
+							<td>${tempResults.phisics}</td>
+							<td>${tempResults.english}</td>
+							<td>${tempResults.biology}</td>
+							<td>${tempResults.art}</td>
+							<td>${tempResults.history}</td>
 
+						</tr>
+					</c:forEach>
+					<tr>
+						<td>
+							<!-- Here passing parameter with a value of id of the student to assign it to the new semester -->
 
-				<tr>
-					<td>
-								<!-- Here passing parameter with a value of id of the student to assign it to the new semester -->
-					 
-						<form action="add-semester.jsp">
+							<form action="add-semester.jsp">
 
-							<input type="hidden" name="id"  value=<%=id%>> <input
-								type="submit" value="Add semester">
-						</form>
+								<input type="hidden" name="id" value=<%=id%>> <input
+									type="submit" value="Add semester">
+							</form>
 
-					</td>
-				<tr>
-			</table>
+						</td>
+					<tr>
+				</table>
 
-			<a href="StudentControllerServlet"><font color="black"><b>Back</b></font></b></a>
+				<a href="StudentControllerServlet"><font color="black"><b>Back</b></font></b></a>
 
-
-
+			</div>
 		</div>
-	</div>
-</body>
+	</body>
 </div>
 </html>

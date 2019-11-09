@@ -15,7 +15,7 @@ public class StudentDbUtil {
    public StudentDbUtil(DataSource theDataSource) {
       this.dataSource = theDataSource;
    }
-
+//Method to get students from database
    public List<Student> getStudents() throws Exception {
       List<Student> students = new ArrayList();
       Connection myConn = null;
@@ -44,7 +44,7 @@ public class StudentDbUtil {
          this.close(myConn, myStmt, myRs);
       }
    }
-
+//Method to close java database connection
    private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
       try {
          if (myRs != null) {
@@ -58,12 +58,12 @@ public class StudentDbUtil {
          if (myConn != null) {
             myConn.close();
          }
-      } catch (Exception var5) {
-         var5.printStackTrace();
+      } catch (Exception exception) {
+         exception.printStackTrace();
       }
 
    }
-
+//Adding new student to database
    public void addStudent(Student student) throws Exception {
       Connection myConn = null;
       PreparedStatement mySt = null;
@@ -82,13 +82,13 @@ public class StudentDbUtil {
       }
 
    }
-
+//Getting student from database basing on their id
    public Student getStudent(String studentId) throws Exception {
       Connection myConn = null;
       ResultSet myRs = null;
       PreparedStatement mySt = null;
 
-      Student var13;
+      Student student;
       try {
          int theStudentId = Integer.parseInt(studentId);
          myConn = this.dataSource.getConnection();
@@ -104,15 +104,15 @@ public class StudentDbUtil {
          String lastName = myRs.getString("last_name");
          String email = myRs.getString("email");
          String password = myRs.getString("pass_word");
-         Student student = new Student(theStudentId, firstName, lastName, email, password);
-         var13 = student;
+         student = new Student(theStudentId, firstName, lastName, email, password);
+         
       } finally {
          this.close(myConn, mySt, myRs);
       }
 
-      return var13;
+      return student;
    }
-
+//Changing data of a given student basing on their id
    public void updateStudent(Student student) throws Exception {
       Connection myConn = null;
       PreparedStatement mySt = null;
@@ -132,7 +132,7 @@ public class StudentDbUtil {
       }
 
    }
-
+//Deleting student
    public void deleteStudent(int id) throws Exception {
       Connection myConn = null;
       PreparedStatement mySt = null;
@@ -148,7 +148,7 @@ public class StudentDbUtil {
       }
 
    }
-
+//Search student
    public List<Student> searchStudent(String theSearchName) throws Exception {
       Connection myConn = null;
       PreparedStatement mySt = null;
@@ -159,19 +159,21 @@ public class StudentDbUtil {
          myConn = this.dataSource.getConnection();
          String sql;
          String firstName;
+         //Checking if name being searched is not null or has no length
          if (theSearchName != null && theSearchName.trim().length() != 0) {
             sql = "select * from student where lower(first_name) like ? or lower(last_name) like ?";
             mySt = myConn.prepareStatement(sql);
             firstName = "%" + theSearchName.toLowerCase() + "%";
             mySt.setString(1, firstName);
             mySt.setString(2, firstName);
-         } else {
+         //If it is null or 0 in length, app just gives back all students from database, order by last_name   
+         } else { 							
             sql = "select * from student order by last_name";
             mySt = myConn.prepareStatement(sql);
          }
-
+         //Getting result set
          myRs = mySt.executeQuery();
-
+         //While result set has next, create new student object and add it to students array list
          while(myRs.next()) {
             int id = myRs.getInt("id");
             firstName = myRs.getString("first_name");
@@ -181,18 +183,18 @@ public class StudentDbUtil {
             students.add(student);
          }
 
-         ArrayList var12 = students;
-         return var12;
+         
+         return students;
       } finally {
          this.close(myConn, mySt, (ResultSet)null);
       }
    }
-
+   //Check password 
    public boolean checkPassword(String email, String password, String status) throws Exception {
       Connection myConn = null;
       PreparedStatement myStmt = null;
       ResultSet myRs = null;
-
+   //Checking if status checked is student or teacher, preparing sql statements
       try {
          myConn = this.dataSource.getConnection();
          String sql;
@@ -201,11 +203,12 @@ public class StudentDbUtil {
          } else {
             sql = "select * from student  where email=? and pass_word=?";
          }
-
+    
          myStmt = myConn.prepareStatement(sql);
          myStmt.setString(1, email);
          myStmt.setString(2, password);
          myRs = myStmt.executeQuery();
+   //Checking if password and email passed to the method don't exist in database
          if (!myRs.next()) {
             return false;
          }
@@ -213,7 +216,7 @@ public class StudentDbUtil {
          myConn.close();
          myStmt.close();
       }
-
+      //If they exist, return true
       return true;
    }
 
@@ -221,20 +224,20 @@ public class StudentDbUtil {
       List<SemesterResults> semesterResults = new ArrayList();
       return semesterResults;
    }
-
+   //Method to get marks of the given student, semester object id and student's id are the same. There can be many semesters with same id (they belong to the one student)
    public List<SemesterResults> getSemesterData(String id) throws Exception {
       List<SemesterResults> results = new ArrayList();
       Connection myConn = null;
       PreparedStatement myStmt = null;
       ResultSet myRs = null;
-
+   //Return semester results with given id from database
       try {
          myConn = this.dataSource.getConnection();
          String sql = "select * from semester_results  where id=?";
          myStmt = myConn.prepareStatement(sql);
          myStmt.setString(1, id);
          myRs = myStmt.executeQuery();
-
+   //Retrieve result set, create new semesterResult object and add it to results List
          while(myRs.next()) {
             int Id = Integer.parseInt(id);
             String math = myRs.getString("math");
@@ -247,14 +250,12 @@ public class StudentDbUtil {
             SemesterResults semesterResult = new SemesterResults(schoolYear, Id, math, phisics, english, biology, art, history);
             results.add(semesterResult);
          }
-
-         
          return results;
       } finally {
          this.close(myConn, myStmt, myRs);
       }
    }
-
+   //Add semester based on user input
    public void addSemester(SemesterResults semester) throws SQLException {
       Connection myConn = null;
       PreparedStatement mySt = null;
@@ -277,7 +278,7 @@ public class StudentDbUtil {
       }
 
    }
-
+   //Delete semesters of a given student(same id), all semester results are gone when student is deleted
    public void deleteSemester(int id) throws SQLException {
       Connection myConn = null;
       PreparedStatement mySt = null;
