@@ -82,5 +82,5 @@ back to login page, if yes - user is logged in;
 Project is in progress
 
 ## Inspiration
-Project is inspired on series of tutorials of Chad Darby on JSP, Servlets and JDBC
+Project is inspired on series of tutorials of Chad Darby on JSP, Servlets and JDBC.
 
