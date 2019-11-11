@@ -36,13 +36,13 @@ The purpose of the project is to learn technologies mentioned above.
 ![screenshot](https://user-images.githubusercontent.com/46251960/68623450-d9b02900-04d4-11ea-8553-ac3389f9efb7.png)
 
 * Student's semestral results started when "More" link is clicked
-![screenshot](https://user-images.githubusercontent.com/46251960/68549116-fe34d400-03f4-11ea-8c42-c9a7da510d6c.png)
+![screenshot](https://user-images.githubusercontent.com/46251960/68623960-fc8f0d00-04d5-11ea-8cf2-eaa81cdd0dfd.png)
 
 * Add semester function
-![screenshot](https://user-images.githubusercontent.com/46251960/68549154-5c61b700-03f5-11ea-9c79-05b346d48d7d.png)
+![screenshot](https://user-images.githubusercontent.com/46251960/68623849-b3d75400-04d5-11ea-862e-8e4c2052da88.png)
 
 * Prompt the user before saving semester results
-![screenshot](https://user-images.githubusercontent.com/46251960/68549292-e3635f00-03f6-11ea-86e8-54efd8c486ca.png)
+![screenshot](https://user-images.githubusercontent.com/46251960/68623995-10d30a00-04d6-11ea-8a86-27a50f188787.png)
 
 * Prompt the user before deleting a student
 ![screenshot](https://user-images.githubusercontent.com/46251960/68549302-f70ec580-03f6-11ea-97ff-edf58174a047.png)
@@ -74,11 +74,13 @@ back to login page, if yes - user is logged in;
      - add semester fuction which enables teacher to write in semester results of a given student for a given school year;
      - prompt the teacher before deleting and adding new semester;
      - logout - user is sent back to login page.
+     
+   * Features of the student view:
+   - view only your results from multiple semesters;
+   -logout;
 
 * Features to be added:
 
-    - Login as student;
-    - Student view should enable user to view only his grades and semesters;
     - Option of sign in on log in page;
     - Student who received mark "2" should be prompted by sending automatically email to his adress;
     - Block possibility of adding empty grades and school years and assign them some range;
