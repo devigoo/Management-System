@@ -65,7 +65,6 @@ The purpose of the project is to learn technologies mentioned above.
 * Login as teacher, application checks if email and password written by the user exist in database. If not, it sends the user
 back to login page, if yes - user is logged in;
 
-   * Features of the teacher view:
      - add student;
      - delete student;
      - update personal data (form which pops up is prepopulated with current data of student from database);
@@ -75,9 +74,10 @@ back to login page, if yes - user is logged in;
      - prompt the teacher before deleting and adding new semester;
      - logout - user is sent back to login page.
      
-   * Features of the student view:
-   - view only your results from multiple semesters;
-   -logout;
+* Login as a student:
+
+     - view only your results from multiple semesters;
+     - log out;
 
 * Features to be added:
 
