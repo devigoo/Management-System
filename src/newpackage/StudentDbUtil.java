@@ -200,9 +200,13 @@ public class StudentDbUtil {
          String sql;
          if (status.contentEquals("teacher")) {
             sql = "select * from teacher  where email=? and pass_word=?";
-         } else {
-            sql = "select * from student  where email=? and pass_word=?";
+         } 
+         else if(status.contentEquals("student")){
+        	 sql = "select * from student  where email=? and pass_word=?";
          }
+        else {
+        	 return false;
+        }
     
          myStmt = myConn.prepareStatement(sql);
          myStmt.setString(1, email);
@@ -220,10 +224,6 @@ public class StudentDbUtil {
       return true;
    }
 
-   public List<SemesterResults> getSemesterResults(int id) {
-      List<SemesterResults> semesterResults = new ArrayList();
-      return semesterResults;
-   }
    //Method to get marks of the given student, semester object id and student's id are the same. There can be many semesters with same id (they belong to the one student)
    public List<SemesterResults> getSemesterData(String id) throws Exception {
       List<SemesterResults> results = new ArrayList();
@@ -294,4 +294,47 @@ public class StudentDbUtil {
       }
 
    }
+   
+public Student getBasicInfo(String email) throws SQLException {
+
+	      Connection myConn = null;
+	      PreparedStatement myStmt = null;
+	      ResultSet myRs = null;
+	      int id = 0;
+	      String firstName, lastName;
+	      Student student = null;
+	      
+	      try {
+	         myConn = this.dataSource.getConnection();
+	         String sql = "select * from student where email=?";
+	         myStmt = myConn.prepareStatement(sql);
+	         myStmt.setString(1, email);
+	         myRs = myStmt.executeQuery();
+
+	         while(myRs.next()) {
+	             id = myRs.getInt("id");
+	             firstName = myRs.getString("first_name");
+	             lastName = myRs.getString("last_name");
+	             student = new Student(id, firstName, lastName);
+	         }
+	         
+	         return student;
+	      } finally {
+	         this.close(myConn, myStmt, myRs);
+	      }
+	   }
+	
+	
+
 }
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   

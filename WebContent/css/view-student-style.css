@@ -46,20 +46,9 @@ tr:nth-child(odd) {background: #BBBBBB}
 #container #content {margin-top: 20px;}
 
 
-.add-student-button {
-	border: 1px solid #666; 
-	border-radius: 5px; 
-	padding: 4px; 
-	font-size: 12px;
-	font-weight: bold;
-	width: 120px; 
-	padding: 5px 10px; 
-	
-	margin-bottom: 15px;
-	background: #cccccc;
-}
 
-.logout {
+
+.add-semester-button {
  border: 1px solid #666; 
 	border-radius: 5px; 
 	padding: 4px; 
@@ -69,10 +58,15 @@ tr:nth-child(odd) {background: #BBBBBB}
 	padding: 5px 10px; 
 	
 	margin-bottom: 15 px;
-	background: #cccccc;
 	
-	position: absolute;
-  left: 1000px;
+	 position: fixed;
+ 	 bottom: 50;
+  	right: 0;
+  
+
+ 
+ 
+  
 
 
  

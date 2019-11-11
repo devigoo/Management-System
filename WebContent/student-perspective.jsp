@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.Arrays,java.util.List"%>
-<%@ page import="newpackage.SemesterResults"%>
+<%@ page import="newpackage.Student"%>
 
 
 <html>
 <div id="bg">
 	<head>
-<title>View Student</title>
+<title>Your semester results</title>
 <link type="text/css" rel="stylesheet" href="css/view-student-style.css" />
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 
 	</head>
-	<body>
-		<%!int id;%>
+	
+
 		<%
-			id = Integer.parseInt(request.getParameter("studentId"));
-		
-		if (session.getAttribute("email1") == null  ) {
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
-		}
-		
+			if (session.getAttribute("email1") == null) {
+				response.sendRedirect(request.getContextPath() + "/index.jsp");
+			}
+
 		%>
 
-		<div id="wrapper">
+<body>
+
+		<form action="StudentControllerServlet">
+					<input type="hidden" name="command" value="LOGOUT"/>
+					<input type="submit" name="submit" class="add-semester-button" value="Log out"/>
+					</form>
+					
 			<div id="header">
-			
-				<h2>Student's semestral results</h2>
+			<div id="wrapper">
+				
+				
+				 	<h2>Semestral results of ${basicStudent.firstName}
+					${basicStudent.lastName}</h2>
+					
+					
 			</div>
+			
 		</div>
+		
+		
+
 
 		<div id="container">
 			<div id="content">
+			
+			
+
 				<table>
-				
+
 					<tr>
 						<th>School year</th>
 						<th>Math</th>
@@ -44,8 +60,8 @@
 						<th>History</th>
 					</tr>
 
-						<!-- Display semester results of the student -->
-					<c:forEach var="tempResults" items="${RESULTS}">
+					<!-- Display semester results of the student -->
+					<c:forEach var="tempResults" items="${RESULTS1}">
 						<tr>
 							<td>${tempResults.schoolYear}</td>
 							<td>${tempResults.math}</td>
@@ -58,21 +74,8 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td>
-							<!-- Here passing parameter with a value of id of the student to assign it to the new semester -->
-
-							<form action="add-semester.jsp">
-
-								<input type="hidden" name="id" value=<%=id%>> <input
-									type="submit" class="add-semester-button" value="Add semester">
-							</form>
-
-						</td>
 					<tr>
 				</table>
-
-				<a href="StudentControllerServlet"><font color="black"><b>Back</b></font></b></a>
-
 			</div>
 		</div>
 	</body>

@@ -79,7 +79,10 @@ public class StudentControllerServlet extends HttpServlet {
            
                loadStudentData(request, response);
                break;
-            
+         
+         case "LOADSINGLESTUDENT":
+        	 	loadSingleStudent(request, response);
+        	 	break;
          case "DELETE":
               deleteStudent(request, response);
                break;
@@ -89,7 +92,26 @@ public class StudentControllerServlet extends HttpServlet {
          throw new ServletException(exception);
       }
    }
-   //Adding semester, parameters passed from form add-semester.jsp
+   
+   private void loadSingleStudent(HttpServletRequest request, HttpServletResponse response)throws Exception {
+	   
+		      String email = (String) session.getAttribute("email1");
+		      Student student = studentDbUtil.getBasicInfo(email);
+		      
+		      session.setAttribute("basicStudent", student);
+		
+		      int id = student.getId();
+		      
+		      
+		      String id1 = Integer.toString(id);
+		      
+		      List<SemesterResults> result = studentDbUtil.getSemesterData(id1);
+		      request.setAttribute("RESULTS1", result);
+		      RequestDispatcher dispatcher = request.getRequestDispatcher("/student-perspective.jsp");
+		      dispatcher.forward(request, response);
+		   }
+	  
+//Adding semester, parameters passed from form add-semester.jsp
    private void addSemester(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
       String id = request.getParameter("id");
       int Id = Integer.parseInt(id);
@@ -113,6 +135,9 @@ public class StudentControllerServlet extends HttpServlet {
       RequestDispatcher dispatcher = request.getRequestDispatcher("/view-student.jsp");
       dispatcher.forward(request, response);
    }
+   
+ 
+   
    		//Loging out by removing attribute email1 and redirecting to login page
    private void logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
       session.removeAttribute("email1");
@@ -124,12 +149,19 @@ public class StudentControllerServlet extends HttpServlet {
       String email = request.getParameter("email");
       String password = request.getParameter("password");
       String status = request.getParameter("choice");
+      
       //Checking if given password, status and email exist in database. If true adding attribute and sending user to Servlet default method, else to login page
-      if (studentDbUtil.checkPassword(email, password, status)) {
+      if (studentDbUtil.checkPassword(email, password, status)&&status.equals("teacher")) {
          session = request.getSession();
          session.setAttribute("email1", email);
          response.sendRedirect(request.getContextPath() + "/StudentControllerServlet");
-      } else {
+      }
+      else if(studentDbUtil.checkPassword(email, password, status)&&status.equals("student")){
+        	 session = request.getSession();
+        	 session.setAttribute("email1", email);
+        	 response.sendRedirect(request.getContextPath()+ "/StudentControllerServlet?command=LOADSINGLESTUDENT");
+         }
+       else {
          response.sendRedirect("index.jsp");
       }
 
