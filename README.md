@@ -29,25 +29,25 @@ The purpose of the project is to learn technologies mentioned above.
 * Student status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68623400-b6857980-04d4-11ea-940e-fbad7d8b5c4a.png)
 
-* Search function
+* Search function - teacher status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68549101-c332a080-03f4-11ea-9582-be5a4f9d6aca.png)
 
-* Add student function
+* Add student function - teacher status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68623450-d9b02900-04d4-11ea-8553-ac3389f9efb7.png)
 
-* Student's semestral results started when "More" link is clicked
+* Student's semestral results, started when "More" link is clicked- teacher status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68623960-fc8f0d00-04d5-11ea-8cf2-eaa81cdd0dfd.png)
 
-* Add semester function
+* Add semester function- teacher status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68623849-b3d75400-04d5-11ea-862e-8e4c2052da88.png)
 
-* Prompt the user before saving semester results
+* Prompt the user before saving semester results- teacher status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68623995-10d30a00-04d6-11ea-8a86-27a50f188787.png)
 
-* Prompt the user before deleting a student
+* Prompt the user before deleting a student- teacher status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68549302-f70ec580-03f6-11ea-97ff-edf58174a047.png)
 
-* Update student
+* Update student- teacher status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68623483-e9c80880-04d4-11ea-8808-b7579f9961b7.png)
 
 ## Technologies
