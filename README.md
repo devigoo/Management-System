@@ -26,11 +26,14 @@ The purpose of the project is to learn technologies mentioned above.
 * Main page - teacher status
 ![screenshot](https://user-images.githubusercontent.com/46251960/68549092-a7c79580-03f4-11ea-8b86-4a1915fbd96a.png)
 
+* Student status
+![screenshot](https://user-images.githubusercontent.com/46251960/68623400-b6857980-04d4-11ea-940e-fbad7d8b5c4a.png)
+
 * Search function
 ![screenshot](https://user-images.githubusercontent.com/46251960/68549101-c332a080-03f4-11ea-9582-be5a4f9d6aca.png)
 
 * Add student function
-![screenshot](https://user-images.githubusercontent.com/46251960/68549111-e65d5000-03f4-11ea-80f4-bb46b45462b1.png)
+![screenshot](https://user-images.githubusercontent.com/46251960/68623450-d9b02900-04d4-11ea-8553-ac3389f9efb7.png)
 
 * Student's semestral results started when "More" link is clicked
 ![screenshot](https://user-images.githubusercontent.com/46251960/68549116-fe34d400-03f4-11ea-8c42-c9a7da510d6c.png)
@@ -43,6 +46,9 @@ The purpose of the project is to learn technologies mentioned above.
 
 * Prompt the user before deleting a student
 ![screenshot](https://user-images.githubusercontent.com/46251960/68549302-f70ec580-03f6-11ea-97ff-edf58174a047.png)
+
+* Update student
+![screenshot](https://user-images.githubusercontent.com/46251960/68623483-e9c80880-04d4-11ea-8808-b7579f9961b7.png)
 
 ## Technologies
 * Java EE, Compiled using JDK 11, Eclipse 2019-06 (4.12)
